@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "title": "task mock 1",
+        "description": "descript",
+        "status":"pending | in_progress | completed", 
+        "createdAt": "2026-01-30"
+    },
+    {
+        "id": 2,
+        "title": "task mock 2",
+        "description": "descript",
+        "status": "pending",
+        "createdAt": "2026-01-31"
+    }
+]
