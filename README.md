@@ -1,3 +1,35 @@
+# Como correr el proyecto
+
+## Si tienes Docker instalado
+
+Ejecuta:
+
+```bash
+docker compose up --build
+```
+
+---
+
+## Sin Docker 
+
+### Backend
+
+```bash
+cd backend
+npm install
+npm run dev
+```
+
+### Frontend
+
+```bash
+cd ..
+cd frontend
+npm install
+npm run dev
+```
+
+
 # Task Manager – Prueba Técnica Fullstack Mid-Level
 
 ## 📌 Objetivo
