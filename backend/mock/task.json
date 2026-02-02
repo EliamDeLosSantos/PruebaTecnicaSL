@@ -3,7 +3,7 @@
         "id": 1,
         "title": "task mock 1",
         "description": "descript",
-        "status":"pending | in_progress | completed", 
+        "status":"in_progress", 
         "createdAt": "2026-01-30"
     },
     {
@@ -11,6 +11,13 @@
         "title": "task mock 2",
         "description": "descript",
         "status": "pending",
+        "createdAt": "2026-01-31"
+    },    
+    {
+        "id": 3,
+        "title": "task mock 3",
+        "description": "Una descripcion",
+        "status": "completed",
         "createdAt": "2026-01-31"
     }
 ]

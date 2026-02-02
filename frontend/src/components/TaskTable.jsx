@@ -1,3 +1,4 @@
+import Title from "./shared/Title";
 
 
 export default function TaskTable({tasks, setUpdatingTask}) {
@@ -6,10 +7,8 @@ export default function TaskTable({tasks, setUpdatingTask}) {
         <>
             {
                 tasks.length > 0 && (
-                    <div>
-                        <h1>
-                            TaskTable
-                        </h1>
+                    <div className="flex flex-col items-center">
+                        <Title text={'Tareas'}/>
                         <div className="bg-white p-6 rounded-xl shadow-md overflow-x-auto">
                             <h2 className="text-xl font-semibold text-gray-800 mb-4">Tareas</h2>
 
@@ -18,6 +17,7 @@ export default function TaskTable({tasks, setUpdatingTask}) {
                                     <tr className="bg-gray-100 text-left text-sm text-gray-600">
                                         <th className="p-3">ID</th>
                                         <th className="p-3">Título</th>
+                                        <th className="p-3">Descripcion</th>
                                         <th className="p-3">Estado</th>
                                         <th className="p-3">Creado</th>
                                         <th className="p-3">Acciones</th>
@@ -30,6 +30,7 @@ export default function TaskTable({tasks, setUpdatingTask}) {
                                             <tr key={task.id} className="border-t">
                                                 <td className="p-3">{task.id}</td>
                                                 <td className="p-3">{task.title}</td>
+                                                <td className="p-3">{task.description}</td>
                                                 <td className="p-3">
                                                     <span className="px-2 py-1 rounded-full text-xs bg-yellow-100 text-yellow-700">
                                                         {task.status}

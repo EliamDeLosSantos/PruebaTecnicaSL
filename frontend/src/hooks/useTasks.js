@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useReducer, useState } from "react"
 import { getTasks,  createTask, updateTask } from "../helper/fetcher.js"
 import { useForm } from 'react-hook-form'
 import { } from '../helper/fetcher'
@@ -7,6 +7,7 @@ export const useTasks =() => {
 
     const [tasks, setTasks] = useState([])
     const [updatingIndex, setupdatingIndex] = useState(null)
+    const [refresh, forceRefresh] = useReducer(x => x + 1, 0)
     const { register, handleSubmit, setValue, formState: { errors }, reset } = useForm()
 
     useEffect(() => {
@@ -15,7 +16,7 @@ export const useTasks =() => {
             setTasks(tasksResponse)
         }
         obtainTasks()
-    }, [])
+    }, [refresh])
 
 
   const upsertTask = async (data) => {
@@ -24,6 +25,7 @@ export const useTasks =() => {
     }else{
        await handleUpdate(data)
     }
+    forceRefresh()
     reset()
   }
 
@@ -32,12 +34,14 @@ export const useTasks =() => {
     const updatingTask = tasks.find(t => t.id == id);
     if(!updatingTask) return;
     setValue("title", updatingTask.title)
-    setValue('status',updatingTask.title)
-    setValue('createdAt',updatingTask.title)
+    setValue("status",updatingTask.status)
+    setValue("createdAt",updatingTask.createdAt)
+    setValue("description",updatingTask.description)
   }
 
   const handleUpdate = async (data) => {
     const response = await updateTask({id:updatingIndex,data});
+    setupdatingIndex(null)
   }
 
   return {
@@ -45,6 +49,7 @@ export const useTasks =() => {
     register,
     registerTask: upsertTask,
     handleSubmit,
-    setUpdatingTask
+    setUpdatingTask,
+    errors
   }
 }
