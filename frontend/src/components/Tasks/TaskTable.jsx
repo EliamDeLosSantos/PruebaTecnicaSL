@@ -1,18 +1,26 @@
-import Title from "./shared/Title";
+import Title from "../shared/Title";
 import { FaEye } from "react-icons/fa";
 import { FaPencilAlt } from "react-icons/fa";
-import { TaskStates, ObtainTaskStatesKey } from "../utils/TaskStates";
-
+import { TaskStates, ObtainTaskStatesKey } from "../../utils/TaskStates";
+import { useEffect, useReducer, useState } from "react"
+import TaskModal from "./TaskModal";
 
 export default function TaskTable({ tasks, setUpdatingTask }) {
+    const [selectedTask, setSelectedTask] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openModal = (task) => {
+        setSelectedTask(task);
+        setIsOpen(true);
+    };
 
     const statusLabelColor = ({ status }) => {
         switch (status) {
-            case ObtainTaskStatesKey({value:TaskStates.completed}):
+            case ObtainTaskStatesKey({ value: TaskStates.completed }):
                 return 'bg-green-100 text-green-700'
-            case ObtainTaskStatesKey({value:TaskStates.pending}):
+            case ObtainTaskStatesKey({ value: TaskStates.pending }):
                 return 'bg-yellow-100 text-yellow-700'
-            case ObtainTaskStatesKey({value:TaskStates.in_progress}):
+            case ObtainTaskStatesKey({ value: TaskStates.in_progress }):
                 return 'bg-blue-100 text-blue-700'
             default:
                 return 'bg-blue-100 text-blue-700'
@@ -57,10 +65,10 @@ export default function TaskTable({ tasks, setUpdatingTask }) {
                                                 </span></td>
                                                 <td className="p-3">
                                                     <div className="flex gap-2">
-                                                        <button onClick={() => setUpdatingTask(task.id)} className=" text-white font-bold px-2 py-1 rounded-md text-xs bg-blue-400">
+                                                        <button onClick={() => openModal(task)} className=" text-white font-bold px-2 py-1 rounded-md text-xs bg-blue-600">
                                                             <FaEye />
                                                         </button>
-                                                        <button onClick={() => setUpdatingTask(task.id)} className="text-white font-bold px-2 py-1 rounded-md text-xs bg-yellow-600">
+                                                        <button onClick={() => setUpdatingTask(task.id)} className="text-white font-bold px-2 py-1 rounded-md text-xs bg-yellow-500">
                                                             <FaPencilAlt />
                                                         </button>
                                                     </div>
@@ -71,7 +79,10 @@ export default function TaskTable({ tasks, setUpdatingTask }) {
                                 </tbody>
                             </table>
                         </div>
-
+                        <TaskModal isOpen={isOpen}
+                            onClose={() => setIsOpen(false)}
+                            task={selectedTask}
+                        />
                     </div>
                 )
             }

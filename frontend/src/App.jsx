@@ -1,5 +1,5 @@
 import TaskForm from "./components/Form/TaskForm"
-import TaskTable from "./components/TaskTable"
+import TaskTable from "./components/Tasks/TaskTable"
 import { useTasks } from "./hooks/useTasks"
 
 export default function App() {
