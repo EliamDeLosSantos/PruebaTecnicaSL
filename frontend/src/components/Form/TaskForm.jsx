@@ -8,7 +8,7 @@ export default function TaskForm({ register, registerTask, handleSubmit, errors 
                         focus:ring-blue-500 border`
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col items-center">
       <Title text={'Formulario de Tareas'}/>
       <form onSubmit={handleSubmit(registerTask)} className="bg-white p-6 rounded-xl shadow-md w-full 
         max-w-md space-y-4">

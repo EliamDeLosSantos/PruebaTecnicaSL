@@ -3,3 +3,5 @@ export const TaskStates = {
     in_progress: 'En Progreso',
     completed: 'Completado'
 }
+
+export const ObtainTaskStatesKey = ({value}) => Object.keys(TaskStates).find(key => TaskStates[key] === value);
